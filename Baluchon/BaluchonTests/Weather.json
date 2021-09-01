@@ -1,0 +1,83 @@
+{
+    "cnt": 2,
+    "list": [
+        {
+            "coord": {
+                "lon": -73.6931,
+                "lat": 45.5423
+            },
+            "sys": {
+                "country": "CA",
+                "timezone": -14400,
+                "sunrise": 1630404921,
+                "sunset": 1630452907
+            },
+            "weather": [
+                {
+                    "id": 802,
+                    "main": "Clouds",
+                    "description": "partiellement nuageux",
+                    "icon": "03d"
+                }
+            ],
+            "main": {
+                "temp": 19.2,
+                "feels_like": 19.29,
+                "temp_min": 17.62,
+                "temp_max": 20.7,
+                "pressure": 1005,
+                "humidity": 81
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 1.79,
+                "deg": 225
+            },
+            "clouds": {
+                "all": 25
+            },
+            "dt": 1630412008,
+            "id": 5905868,
+            "name": "Bordeaux"
+        },
+        {
+            "coord": {
+                "lon": -74.006,
+                "lat": 40.7143
+            },
+            "sys": {
+                "country": "US",
+                "timezone": -14400,
+                "sunrise": 1630405348,
+                "sunset": 1630452630
+            },
+            "weather": [
+                {
+                    "id": 741,
+                    "main": "Fog",
+                    "description": "brouillard",
+                    "icon": "50d"
+                }
+            ],
+            "main": {
+                "temp": 23.15,
+                "feels_like": 23.69,
+                "temp_min": 20.53,
+                "temp_max": 25.09,
+                "pressure": 1010,
+                "humidity": 83
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 0,
+                "deg": 0
+            },
+            "clouds": {
+                "all": 20
+            },
+            "dt": 1630411763,
+            "id": 5128581,
+            "name": "New York"
+        }
+    ]
+}
