@@ -7,23 +7,25 @@
 
 import Foundation
 
-class WeatherSun {
+class WeatherService {
     
-    private let weatherSession1: URLSession
+    // MARK: - Properties
+    
+    private let weatherSession: URLSession
     private var task: URLSessionTask?
     
-    init(weatherSession1: URLSession = URLSession(configuration: .default)) {
-        self.weatherSession1 = weatherSession1
+    init(weatherSession: URLSession = URLSession(configuration: .default)) {
+        self.weatherSession = weatherSession
 
     }
     
-    func getWeather1(callback: @escaping (Result<WeatherCloud, NetworkError>) -> Void) {
-        guard let url = URL(string: "http://api.openweathermap.org/data/2.5/group?id=5905868,5128581&lang=fr&units=metric&appid=\(APIKeys.openWeatherMapKey)") else {
-            callback(.failure(.invalidURL))
-            return
-        }
+    // MARK: - Methodes
+    
+    // call the URL for take the info of the weather
+    func getWeather(callback: @escaping (Result<WeatherCloud, NetworkError>) -> Void) {
+        guard let url = URL(string: "http://api.openweathermap.org/data/2.5/group?id=5905868,5128581&lang=fr&units=metric&appid=\(APIKeys.openWeatherMapKey)") else {return}
         task?.cancel()
-        task = weatherSession1.dataTask(with: url) { (data, response, error) in
+        task = weatherSession.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
                 callback(.failure(.noData))
                 return
@@ -42,10 +44,4 @@ class WeatherSun {
     }
 }
 
-extension String {
-    var data : Data? {
-        guard let url = URL(string: self) else { return nil}
-        guard let data = try? Data(contentsOf: url) else {return nil}
-        return data
-    }
-}
+

@@ -9,44 +9,51 @@ import UIKit
 
 class WeatherViewController: UIViewController {
     
+    // MARK: - @IB Outlet
     
+    @IBOutlet weak var cityBordeauxLabel: UILabel!
+    @IBOutlet weak var temperatureBordeauxLabel: UILabel!
+    @IBOutlet weak var weatherBordeauxImageView: UIImageView!
     
-    @IBOutlet weak var city1: UILabel!
-    @IBOutlet weak var temperature1
-: UILabel!
-    @IBOutlet weak var weatherPicture: UIImageView!
+    @IBOutlet weak var cityNYLabel: UILabel!
+    @IBOutlet weak var temperatureNYLabel: UILabel!
+    @IBOutlet weak var weatherNYImageView: UIImageView!
     
-    @IBOutlet weak var city2: UILabel!
-    @IBOutlet weak var temperature2
-: UILabel!
-    @IBOutlet weak var weatherPicture2: UIImageView!
+    // MARK: - Properties
     
-    private let weather = WeatherSun()
+    private let weather = WeatherService()
+    
+    // MARK: - Methodes
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getWeather1()
+        getWeather()
     }
     
-    func getWeather1() {
-        weather.getWeather1 { result in
+    // MARK: - @IB Action
+    
+    //  Call the API for display the weather of the 2 city
+    func getWeather() {
+        weather.getWeather { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherData) :
-                    self.city1.text = weatherData.list[0].name
-                    self.temperature1
+                    self?.cityBordeauxLabel.text = weatherData.list[0].name
+                    self?.temperatureBordeauxLabel
 .text = "\(weatherData.list[0].main.temp) °C"
                     guard let icon = "http://openweathermap.org/img/wn/\(weatherData.list[0].weather[0].icon)@2x.png".data else {return}
-                    self.weatherPicture.image = UIImage(data: icon)
-                    self.city2.text = weatherData.list[1].name
-                    self.temperature2
+                    self?.weatherBordeauxImageView.image = UIImage(data: icon)
+                    self?.cityNYLabel.text = weatherData.list[1].name
+                    self?.temperatureNYLabel
 .text = "\(weatherData.list[1].main.temp) °C"
                     guard let icon = "http://openweathermap.org/img/wn/\(weatherData.list[1].weather[0].icon)@2x.png".data else {return}
-                    self.weatherPicture2.image = UIImage(data: icon)
+                    self?.weatherNYImageView.image = UIImage(data: icon)
                 case .failure(let error):
                     print(error)
+                    self?.didAlert(message: "Erreur de chargement des données")
                 }
             }
         }
     }
+
 }

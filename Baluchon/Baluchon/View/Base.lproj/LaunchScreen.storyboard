@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="R4U-ps-jUX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -7,40 +7,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Traduction-->
+        <!--View Controller-->
         <scene sceneID="q1t-Yk-oRF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qAy-2x-gB3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="R4U-ps-jUX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9jG-gt-FoI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bonjour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-ih-86L">
-                                <rect key="frame" x="45" y="109" width="265" height="387"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vIc-ih-86L" secondAttribute="height" multiplier="2:1" id="Ap1-ez-WRp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CALST01901" translatesAutoresizingMaskIntoConstraints="NO" id="duB-35-Iof">
+                                <rect key="frame" x="8" y="52" width="398" height="802"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3SU-gE-aww"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vIc-ih-86L" firstAttribute="leading" secondItem="3SU-gE-aww" secondAttribute="leading" constant="45" id="G7k-a9-1Fs"/>
-                            <constraint firstItem="vIc-ih-86L" firstAttribute="top" secondItem="3SU-gE-aww" secondAttribute="top" constant="65" id="VmH-JG-EDG"/>
+                            <constraint firstItem="duB-35-Iof" firstAttribute="top" secondItem="3SU-gE-aww" secondAttribute="top" constant="8" id="W6e-8w-F5p"/>
+                            <constraint firstItem="duB-35-Iof" firstAttribute="leading" secondItem="3SU-gE-aww" secondAttribute="leading" constant="8" id="fi1-jo-AH5"/>
+                            <constraint firstItem="3SU-gE-aww" firstAttribute="bottom" secondItem="duB-35-Iof" secondAttribute="bottom" constant="8" id="i5Y-WW-noI"/>
+                            <constraint firstItem="3SU-gE-aww" firstAttribute="trailing" secondItem="duB-35-Iof" secondAttribute="trailing" constant="8" id="zmR-YA-dPB"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Traduction" image="person" catalog="system" id="lf4-dA-dhU"/>
-                    <navigationItem key="navigationItem" id="1Jd-90-pvv"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qAy-2x-gB3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1671.0144927536232" y="276.5625"/>
         </scene>
     </scenes>
     <resources>
-        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="CALST01901" width="400" height="432"/>
     </resources>
 </document>

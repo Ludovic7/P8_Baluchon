@@ -19,7 +19,7 @@ static let error = NetworkError()
 
 static var correctData: Data {
     let bundle = Bundle(for: FakeResponseDataConverter.self)
-    let url = bundle.url(forResource: "Weather", withExtension: "json")
+    let url = bundle.url(forResource: "Converter", withExtension: "json")
     let data = try! Data(contentsOf: url!)
     return data
 }

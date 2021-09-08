@@ -15,7 +15,9 @@ enum NetworkError: Error {
 }
 
 
-class Converter {
+class ConverterService {
+    
+    // MARK: - Properties
     
     private let converterSession: URLSession
     private var task: URLSessionTask?
@@ -24,11 +26,11 @@ class Converter {
         self.converterSession = converterSession
     }
     
+    // MARK: - Methodes
+    
+    // call the URL for take the info of the converter
     func getConverter(callback: @escaping (Result<Double, NetworkError>) -> Void) {
-        guard let url = URL(string: "http://data.fixer.io/api/latest?access_key=\(APIKeys.fixerKey)") else {
-            callback(.failure(.invalidURL))
-            return
-        }
+        guard let url = URL(string: "http://data.fixer.io/api/latest?access_key=\(APIKeys.fixerKey)") else {return}
         task?.cancel()
         task = converterSession.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {

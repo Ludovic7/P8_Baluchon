@@ -1,14 +1,14 @@
 //
-//  BaluchonTests.swift
+//  BaluchonConverterTests.swift
 //  BaluchonTests
 //
-//  Created by Ludovic DANGLOT on 31/08/2021.
+//  Created by Ludovic DANGLOT on 01/09/2021.
 //
 
 import XCTest
 @ testable import Baluchon
 
-class BaluchonWeatherTests: XCTestCase {
+class BaluchonConverterServiceTests: XCTestCase {
     
     private let sessionConfiguration: URLSessionConfiguration = {
         let sessionConfiguration = URLSessionConfiguration.ephemeral
@@ -16,13 +16,12 @@ class BaluchonWeatherTests: XCTestCase {
         return sessionConfiguration
     }()
 
-    func testsGetWeather_WhenFakeSessionWithErrorIsPassed_ThenShouldReturnAnError() {
-        URLProtocolFake.fakeURLs = [FakeResponseDataWeather.url: (nil, nil, FakeResponseDataWeather.error)]
+    func testsGetConverter_WhenFakeSessionWithErrorIsPassed_ThenShouldReturnAnError() {
+        URLProtocolFake.fakeURLs = [FakeResponseDataConverter.url: (nil, nil, FakeResponseDataConverter.error)]
         let fakeSession = URLSession(configuration: sessionConfiguration)
-        let fakeWeather: WeatherSun = .init(weatherSession1: fakeSession)
-        
+        let fakeConverter: ConverterService = .init(converterSession: fakeSession)
         let expectation = XCTestExpectation(description: "Waiting...")
-        fakeWeather.getWeather1() { result in
+        fakeConverter.getConverter() { result in
             guard case .failure(let error) = result else {
                 XCTFail("Test failed")
                 return
@@ -33,13 +32,13 @@ class BaluchonWeatherTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
 
-    func testsGetWeather_WhenFakeSessionWithCorrectDataAndInvalidResponseArePassed_ThenShouldReturnAnErro() {
-        URLProtocolFake.fakeURLs = [FakeResponseDataWeather.url: (FakeResponseDataWeather.correctData, FakeResponseDataWeather.responseKO, nil)]
+    func testsGetConverter_WhenFakeSessionWithCorrectDataAndInvalidResponseArePassed_ThenShouldReturnAnErro() {
+        URLProtocolFake.fakeURLs = [FakeResponseDataConverter.url: (FakeResponseDataConverter.correctData, FakeResponseDataConverter.responseKO, nil)]
         let fakeSession = URLSession(configuration: sessionConfiguration)
-        let fakeWeather: WeatherSun = .init(weatherSession1: fakeSession)
+        let fakeConverter: ConverterService = .init(converterSession: fakeSession)
         
         let expectation = XCTestExpectation(description: "Waiting...")
-        fakeWeather.getWeather1() { result in
+        fakeConverter.getConverter() { result in
             guard case .failure(let error) = result else {
                 XCTFail("Test failed")
                 return
@@ -50,13 +49,13 @@ class BaluchonWeatherTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testsGetWeather_WhenFakeSessionWithIncorrectDataAndValidResponseArePassed_ThenShouldReturnAnError() {
-        URLProtocolFake.fakeURLs = [FakeResponseDataWeather.url: (FakeResponseDataWeather.incorrectData, FakeResponseDataWeather.responseOK, nil)]
+    func testsGetConverter_WhenFakeSessionWithIncorrectDataAndValidResponseArePassed_ThenShouldReturnAnError() {
+        URLProtocolFake.fakeURLs = [FakeResponseDataConverter.url: (FakeResponseDataConverter.incorrectData, FakeResponseDataConverter.responseOK, nil)]
         let fakeSession = URLSession(configuration: sessionConfiguration)
-        let fakeWeather: WeatherSun = .init(weatherSession1: fakeSession)
+        let fakeConverter: ConverterService = .init(converterSession: fakeSession)
         
         let expectation = XCTestExpectation(description: "Waiting...")
-        fakeWeather.getWeather1() { result in
+        fakeConverter.getConverter() { result in
             guard case .failure(let error) = result else {
                 XCTFail("Test failed")
                 return
@@ -67,22 +66,22 @@ class BaluchonWeatherTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testsGetWeather_WhenFakeSessionWithCorrectDataAndValidResponseArePassed_ThenShouldACorrectConvertion() {
-        URLProtocolFake.fakeURLs = [FakeResponseDataWeather.url: (FakeResponseDataWeather.correctData, FakeResponseDataWeather.responseOK, nil)]
+    func testsGetConverter_WhenFakeSessionWithCorrectDataAndValidResponseArePassed_ThenShouldReturnAnCorrectConvertion() {
+        URLProtocolFake.fakeURLs = [FakeResponseDataConverter.url: (FakeResponseDataConverter.correctData, FakeResponseDataConverter.responseOK, nil)]
         let fakeSession = URLSession(configuration: sessionConfiguration)
-        let fakeWeather: WeatherSun = .init(weatherSession1: fakeSession)
+        let fakeConverter: ConverterService = .init(converterSession: fakeSession)
         
         let expectation = XCTestExpectation(description: "Waiting...")
-        fakeWeather.getWeather1() { result in
-            guard case .success(let weatherSuccess) = result else {
-                XCTFail("Test failed: \(#function)")
+        fakeConverter.getConverter() { result in
+            guard case .success(let converterSuccess) = result else {
+                XCTFail("Test failed")
                 return
             }
-            XCTAssertTrue(true)
+            XCTAssertTrue(converterSuccess == 1.183467)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.01)
     }
+    
 
 }
-
